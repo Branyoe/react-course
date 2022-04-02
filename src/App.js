@@ -136,52 +136,94 @@ import { useState, useEffect, Component } from 'react';
 //   }
 // }
 
-//******************************************************************************************** */
-//useEfect***********
-//nos ayuda a implementar el ciclo de vida en los hooks/componentes funcionales
+// //******************************************************************************************** */
+// //useEfect***********
+// //nos ayuda a implementar el ciclo de vida en los hooks/componentes funcionales
 
+// const App = () => {
+//   const [name, setName] = useState("");//definicion de useState;
+//   const [age, setAge] = useState(0);
+//   //equicalente a componentDidMount
+//   useEffect(() => {
+//     console.log(`AppComponent montado`);
+
+//     return () => { // se ejcuta cuando el componente se desmonta
+//       console.log("AppComponent desmontado");
+//     }
+//   }, []);
+
+//   //equivalente a componentDidUpdate (referencia a todo el componente)
+//   useEffect(() => {
+//     console.log("AppComponent actualizado");
+//   });
+
+//   //se ejecuta unicamente cuando el estado age del componente se actualiza
+//   useEffect(() => console.log("AppComponent actualizado en Age: " + age), [age]);
+
+//   //se ejecuta unicamente cuando el estado age del componente se actualiza
+//   useEffect(() => console.log("AppComponent actualizado en Name: " + name), [name]);
+
+//   //se ejecuta cuando el estado age o name del componente se actualiza
+//   useEffect(() => console.log("AppComponent actualizado en Name o Age: "), [name, age]);
+
+//   //render
+//   return (
+//     <div>
+//       <h1>Ciclo de vida de un componente hook o funcional</h1>
+//       <div>
+//         <input placeholder='escribe algo' value={name} onChange={({ target: { value } }) => setName(value)} />
+//         <br></br>
+//         <input 
+//           placeholder="edad"
+//           type="number"
+//           value={age}
+//           onChange={({target: { value }}) => setAge(value)}
+//         ></input>
+//       </div>
+//     </div>
+//   );
+// }
+
+//*************************************************************************************************++ */
+//renderizado condicional**************************+
 const App = () => {
-  const [name, setName] = useState("");//definicion de useState;
-  const [age, setAge] = useState(0);
-  //equicalente a componentDidMount
-  useEffect(() => {
-    console.log(`AppComponent montado`);
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogged, setIsLogged] = useState(false);
 
-    return () => { // se ejcuta cuando el componente se desmonta
-      console.log("AppComponent desmontado");
-    }
-  }, []);
+  const handleLoginClick = () => {
+    setIsLogged(true);
+  };
 
-  //equivalente a componentDidUpdate (referencia a todo el componente)
-  useEffect(() => {
-    console.log("AppComponent actualizado");
-  });
-
-  //se ejecuta unicamente cuando el estado age del componente se actualiza
-  useEffect(() => console.log("AppComponent actualizado en Age: " + age), [age]);
-
-  //se ejecuta unicamente cuando el estado age del componente se actualiza
-  useEffect(() => console.log("AppComponent actualizado en Name: " + name), [name]);
-
-  //se ejecuta cuando el estado age o name del componente se actualiza
-  useEffect(() => console.log("AppComponent actualizado en Name o Age: "), [name, age]);
-
-  //render
   return (
     <div>
-      <h1>Ciclo de vida de un componente hook o funcional</h1>
-      <div>
-        <input placeholder='escribe algo' value={name} onChange={({ target: { value } }) => setName(value)} />
-        <br></br>
-        <input 
-          placeholder="edad"
-          type="number"
-          value={age}
-          onChange={({target: { value }}) => setAge(value)}
+      <h1>Renderizado condicional</h1>
+      <label>
+        Usuario
+        <input
+          placeholder="usuario"
+          value={user}
+          onChange={({ target: { value } }) => setUser(value)}
         ></input>
-      </div>
+      </label>
+      <br></br>
+      <label>
+        Password
+        <input
+          placeholder="password"
+          type="password"
+          value={password}
+          onChange={({ target: { value }}) => setPassword(value)}
+        ></input>
+      </label>
+      <br></br>
+      <button
+        onClick={handleLoginClick}
+      >Iniciar sesion</button>
+      {/* {isLogged ? <h2>Sesion iniciada</h2> : null} renderizado condicional o ...*/}
+      {isLogged && <h2>Sesion iniciada</h2>}
     </div>
-  );
+  )
 }
 
 export default App;

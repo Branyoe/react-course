@@ -1,5 +1,5 @@
 //importaciones
-import { useState , Component } from 'react';
+import { useState, useEffect, Component } from 'react';
 //************************Login ejemplo*********************++ */
 // //componente en función
 // function App() {
@@ -98,43 +98,90 @@ import { useState , Component } from 'react';
 // }
 
 //******************************************************************************************* */
-//ciclo de vida
-class App extends Component{
-  constructor(props) { //se ejecuta cuando se inicializa el componente
-    super(props);
-    console.log("Contructor");
-    this.state = {name: ""};
-  }
+//ciclo de vida*********+
+// class App extends Component{
+//   constructor(props) { //se ejecuta cuando se inicializa el componente
+//     super(props);
+//     console.log("Contructor");
+//     this.state = {name: ""};
+//   }
 
-  componentDidMount(){
-    console.log("didMount");
-  }
+//   componentDidMount(){ // se ejecuta cuando se monta el componente
+//     console.log("didMount");
+//   }
 
-  componentDidUpdate(prevProps, prevState, snapshot/*es el valor que retorna getSnapshot*/) {//se ejecuta cuando actualizas el estado del componente (setState)
-    console.log("didUpdate", snapshot);
-  }
+//   componentDidUpdate(prevProps, prevState, snapshot/*es el valor que retorna getSnapshot*/) {//se ejecuta cuando actualizas el estado del componente (setState)
+//     console.log("didUpdate", snapshot);
+//   }
 
-  // shouldComponentUpdate(){ //permite cancelar el rerenderizado
-  //   return false;
-  // }
+//   // shouldComponentUpdate(){ //permite cancelar el rerenderizado
+//   //   return false;
+//   // }
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {//se ejecuta antes de update y te da el estado y las porps anteriores a este mismo
-    console.log(prevProps, prevState);
-    return "yes";
-  }
+//   getSnapshotBeforeUpdate(prevProps, prevState) {//se ejecuta antes de update y te da el estado y las porps anteriores a este mismo
+//     console.log(prevProps, prevState);
+//     return "yes";
+//   }
 
-  render() {
+//   render() {
 
-    return (
+//     return (
+//       <div>
+//         <h1>Ciclo de vida de un componente</h1>
+//         <div>
+//           <input placeholder='escribe algo' value={this.state.name} onChange={({ target: { value } }) => this.setState({ name: value })}/>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+//******************************************************************************************** */
+//useEfect***********
+//nos ayuda a implementar el ciclo de vida en los hooks/componentes funcionales
+
+const App = () => {
+  const [name, setName] = useState("");//definicion de useState;
+  const [age, setAge] = useState(0);
+  //equicalente a componentDidMount
+  useEffect(() => {
+    console.log(`AppComponent montado`);
+
+    return () => { // se ejcuta cuando el componente se desmonta
+      console.log("AppComponent desmontado");
+    }
+  }, []);
+
+  //equivalente a componentDidUpdate (referencia a todo el componente)
+  useEffect(() => {
+    console.log("AppComponent actualizado");
+  });
+
+  //se ejecuta unicamente cuando el estado age del componente se actualiza
+  useEffect(() => console.log("AppComponent actualizado en Age: " + age), [age]);
+
+  //se ejecuta unicamente cuando el estado age del componente se actualiza
+  useEffect(() => console.log("AppComponent actualizado en Name: " + name), [name]);
+
+  //se ejecuta cuando el estado age o name del componente se actualiza
+  useEffect(() => console.log("AppComponent actualizado en Name o Age: "), [name, age]);
+
+  //render
+  return (
+    <div>
+      <h1>Ciclo de vida de un componente hook o funcional</h1>
       <div>
-        <h1>Ciclo de vida de un componente</h1>
-        <div>
-          <input placeholder='escribe algo' value={this.state.name} onChange={({ target: { value } }) => this.setState({ name: value })}/>
-        </div>
+        <input placeholder='escribe algo' value={name} onChange={({ target: { value } }) => setName(value)} />
+        <br></br>
+        <input 
+          placeholder="edad"
+          type="number"
+          value={age}
+          onChange={({target: { value }}) => setAge(value)}
+        ></input>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
 
 export default App;

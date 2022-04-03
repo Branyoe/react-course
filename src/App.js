@@ -184,46 +184,101 @@ import { useState, useEffect, Component } from 'react';
 //   );
 // }
 
-//*************************************************************************************************++ */
-//renderizado condicional**************************+
-const App = () => {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLogged, setIsLogged] = useState(false);
+// //*************************************************************************************************++ */
+// //renderizado condicional**************************+
+// const App = () => {
+//   const [user, setUser] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [isLogged, setIsLogged] = useState(false);
 
-  const handleLoginClick = () => {
-    setIsLogged(true);
-  };
+//   const handleLoginClick = () => {
+//     setIsLogged(!isLogged);
+//   };
+
+//   return (
+//     <div>
+//       <h1>Renderizado condicional</h1>
+//       <label>
+//         Usuario
+//         <input
+//           placeholder="usuario"
+//           value={user}
+//           onChange={({ target: { value } }) => setUser(value)}
+//         ></input>
+//       </label>
+//       <br></br>
+//       <label>
+//         Password
+//         <input
+//           placeholder="password"
+//           type="password"
+//           value={password}
+//           onChange={({ target: { value }}) => setPassword(value)}
+//         ></input>
+//       </label>
+//       <br></br>
+//       <button
+//         onClick={handleLoginClick}
+//       >Iniciar sesion</button>
+//       {/* {isLogged ? <h2>Sesion iniciada</h2> : null} renderizado condicional o ...*/}
+//       {isLogged && <h2>Sesion iniciada</h2>}
+//     </div>
+//   )
+// }
+
+//************************************************************************************** */
+//Listas y Keys***************************+
+
+const jsonData = [
+  {
+    key: "1",
+    name: "Yoel"
+  },
+  {
+    key: "2",
+    name: "Daniel"
+  },
+  {
+    key: "3",
+    name: "Mario"
+  }
+]
+
+const ListsAndKesy = (props) => {
+  //variable de estado
+  const [isLoading, setIsLoading] = useState(true);
+
+  //useEfect simula la carga de isLoading cuando se monta el componente
+  useEffect(()=>{
+    setTimeout(()=> setIsLoading(false), 3000);
+  }, [])
+
+  //function que recorre la lista de datos y las pinta en un p
+  const renderData = () => {
+    //if(isLoading) return <h3>Cargando...</h3>; //forma de condicionar el isLoading, no tan recomendado
+    
+    return jsonData?.map((v, i) => (
+      <div key={v.key}>
+        <p>{v.name}</p>
+      </div>
+    ));
+  }
 
   return (
-    <div>
-      <h1>Renderizado condicional</h1>
-      <label>
-        Usuario
-        <input
-          placeholder="usuario"
-          value={user}
-          onChange={({ target: { value } }) => setUser(value)}
-        ></input>
-      </label>
-      <br></br>
-      <label>
-        Password
-        <input
-          placeholder="password"
-          type="password"
-          value={password}
-          onChange={({ target: { value }}) => setPassword(value)}
-        ></input>
-      </label>
-      <br></br>
-      <button
-        onClick={handleLoginClick}
-      >Iniciar sesion</button>
-      {/* {isLogged ? <h2>Sesion iniciada</h2> : null} renderizado condicional o ...*/}
-      {isLogged && <h2>Sesion iniciada</h2>}
-    </div>
-  )
+    <>
+      <h1>Listas y Keys</h1>
+      <div>
+        {isLoading ? <h3>Cargando...</h3> : renderData()}
+      </div>
+    </>
+  );
+}
+
+//App********************** */
+const App = () => {
+  return (
+    <ListsAndKesy />
+  );
 }
 
 export default App;

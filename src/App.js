@@ -1,5 +1,5 @@
 //importaciones
-import { useState, useEffect, Component } from 'react';
+
 //************************Login ejemplo*********************++ */
 // //componente en función
 // function App() {
@@ -226,59 +226,57 @@ import { useState, useEffect, Component } from 'react';
 //   )
 // }
 
-//************************************************************************************** */
-//Listas y Keys***************************+
+// //************************************************************************************** */
+// //Listas y Keys***************************+
 
-const jsonData = [
-  {
-    key: "1",
-    name: "Yoel"
-  },
-  {
-    key: "2",
-    name: "Daniel"
-  },
-  {
-    key: "3",
-    name: "Mario"
-  }
-]
+// const jsonData = [
+//   {
+//     key: "1",
+//     name: "Yoel"
+//   },
+//   {
+//     key: "2",
+//     name: "Daniel"
+//   },
+//   {
+//     key: "3",
+//     name: "Mario"
+//   }
+// ]
 
-const ListsAndKesy = (props) => {
-  //variable de estado
-  const [isLoading, setIsLoading] = useState(true);
+// const ListsAndKesy = (props) => {
+//   //variable de estado
+//   const [isLoading, setIsLoading] = useState(true);
 
-  //useEfect simula la carga de isLoading cuando se monta el componente
-  useEffect(()=>{
-    setTimeout(()=> setIsLoading(false), 3000);
-  }, [])
+//   //useEfect simula la carga de isLoading cuando se monta el componente
+//   useEffect(()=>{
+//     setTimeout(()=> setIsLoading(false), 3000);
+//   }, []);
 
-  //function que recorre la lista de datos y las pinta en un p
-  const renderData = () => {
-    //if(isLoading) return <h3>Cargando...</h3>; //forma de condicionar el isLoading, no tan recomendado
+//   //function que recorre la lista de datos y las pinta en un p
+//   const renderData = () => {
+//     //if(isLoading) return <h3>Cargando...</h3>; //forma de condicionar el isLoading, no tan recomendado
     
-    return jsonData?.map((v, i) => (
-      <div key={v.key}>
-        <p>{v.name}</p>
-      </div>
-    ));
-  }
+//     return jsonData?.map((v, i) => (
+//       <div key={v.key}>
+//         <p>{v.name}</p>
+//       </div>
+//     ));
+//   }
 
-  return (
-    <>
-      <h1>Listas y Keys</h1>
-      <div>
-        {isLoading ? <h3>Cargando...</h3> : renderData()}
-      </div>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <h1>Listas y Keys</h1>
+//       <div>
+//         {isLoading ? <h3>Cargando...</h3> : renderData()}
+//       </div>
+//     </>
+//   );
+// }
+
+import Search from './views/Search'
 
 //App********************** */
-const App = () => {
-  return (
-    <ListsAndKesy />
-  );
-}
+const App = () => <Search/>;
 
 export default App;

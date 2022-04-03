@@ -1,0 +1,11 @@
+.search-box{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-box-buttons{
+  display: flex;
+  flex-direction: row;
+}

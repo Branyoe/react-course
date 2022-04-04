@@ -2,7 +2,10 @@ import { useState } from "react";
 import "./style.css";
 
 export default function SearchBox({onSearch, onClose} /*aquí se reciben las props que provee el padre */) {
+  //constates de estado
   const [searchText, setSearchText] = useState("");
+  
+  //ejecuta onClose y además limpia el input
   const handleCloseClick = () => {
     setSearchText("");
     onClose();
@@ -20,7 +23,7 @@ export default function SearchBox({onSearch, onClose} /*aquí se reciben las pro
           />
         </label>
         <button
-          onClick={onSearch}
+          onClick={() => onSearch(searchText)}
         >Buscar</button>
         <button
           onClick={handleCloseClick}

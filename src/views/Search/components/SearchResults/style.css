@@ -1,0 +1,17 @@
+.search-results{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-result-item{
+  width: 40%;
+  margin-top: 8px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #E8E7E7;
+}

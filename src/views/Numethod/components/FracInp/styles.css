@@ -1,0 +1,31 @@
+/* div{
+  margin: 0;
+  padding: 0;
+}
+
+.inp-container{
+  display: inline-block;
+  min-width: 20px;
+  max-width: 50px;
+  padding: 0;
+  margin: 0;
+  height: min-content;
+  background-color: red;
+}
+
+.inp{
+  min-width: 20px;
+  max-width: 50px;
+  height: 20px;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: 10px auto 10px;
+  grid-template-rows: 1fr;
+}
+
+.inp-frac{
+  display: flex;
+  flex-direction: column;
+} */

@@ -274,9 +274,11 @@
 //   );
 // }
 
+import Numethod from './views/Numethod';
 import Search from './views/Search'
 
+
 //App********************** */
-const App = () => <Search/>;
+const App = () => <Search />;
 
 export default App;

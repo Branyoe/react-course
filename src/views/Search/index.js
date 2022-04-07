@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
 import SearchBox from './components/SearchBox/';
-import "./style.css";
 import data from '../../data/users.json';
 import SearchResults from './components/SearchResults';
+
+import "./style.css";
 
 export default function Search() {
   //constantes de estado
